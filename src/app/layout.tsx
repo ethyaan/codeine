@@ -4,6 +4,9 @@ import { useEffect } from "react";
 import Script from "next/script";
 import Head from "next/head";
 import { Inter } from "next/font/google";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -125,7 +128,12 @@ export default function RootLayout({
           <style> {`html { visibility:hidden; }`} </style>
         </Head>
         <body className={`${inter.className} bg-white dark:bg-gray-800`}>
-          {children}
+          <main className="pb-16 lg:pb-24 bg-white dark:bg-gray-900">
+            <Navbar />
+            <Header />
+            {children}
+          </main>
+          <Footer />
         </body>
       </html>
     </>
