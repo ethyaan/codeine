@@ -19,8 +19,8 @@ export default function RootLayout({
     const themeToggleBtn = document.getElementById(
       "theme-toggle"
     ) as HTMLElement;
+    setThemeDefaultMode();
     setSwitcherIcon();
-    modeSwitcher();
     handleScroll();
 
     themeToggleBtn.addEventListener("click", modeSwitcher);
@@ -32,6 +32,9 @@ export default function RootLayout({
     };
   });
 
+  /**
+   * handle progress bar fill
+   */
   const handleScroll = (): void => {
     const h = document.documentElement,
       b = document.body,
@@ -85,32 +88,36 @@ export default function RootLayout({
     }
   };
 
+  /**
+   * set default theme mode light or dark based on the previously saved or system setting
+   */
+  const setThemeDefaultMode = () => {
+    const storedMode = localStorage.getItem("color-theme");
+    document.documentElement.classList.remove(...["dark", "light"]);
+    if (storedMode) {
+      document.documentElement.classList.add(storedMode);
+    } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.add("dark");
+    }
+  };
+
+  /**
+   * change theme mode
+   */
   const modeSwitcher = (): void => {
     const { dark, light } = switcherIcons();
     // toggle icons inside button
     dark.classList.toggle("hidden");
     light.classList.toggle("hidden");
+    const currentMode = document.documentElement.classList.contains("dark")
+      ? "light"
+      : "dark";
 
-    // if set via local storage previously
-    if (localStorage.getItem("color-theme")) {
-      if (localStorage.getItem("color-theme") === "light") {
-        document.documentElement.classList.add("dark");
-        localStorage.setItem("color-theme", "dark");
-      } else {
-        document.documentElement.classList.remove("dark");
-        localStorage.setItem("color-theme", "light");
-      }
-
-      // if NOT set via local storage previously
-    } else {
-      if (document.documentElement.classList.contains("dark")) {
-        document.documentElement.classList.remove("dark");
-        localStorage.setItem("color-theme", "light");
-      } else {
-        document.documentElement.classList.add("dark");
-        localStorage.setItem("color-theme", "dark");
-      }
-    }
+    document.documentElement.classList.remove(...["dark, light"]);
+    document.documentElement.classList.add("light");
+    localStorage.setItem("color-theme", currentMode);
   };
 
   return (
