@@ -1,10 +1,12 @@
+"use client";
 import ButtonIcon from "@/components/ButtonIcon";
-import getPosts from "@/utils/post";
-const posts = getPosts();
-console.log("_DEBUG_ =>", posts.length);
+import { useAppSelector } from "@/redux/hooks";
+import { PostType } from "@/common/interface/post";
 
-export default function Home(props: any) {
-  console.log('props =>', props);
+export default function Home() {
+  const posts: PostType[] = useAppSelector((state) => state.posts);
+
+  console.log("page =>", posts);
   return (
     <>
       <article className="xl:w-[52rem] lg:w-[52rem] md-w-auto w-full max-w-none format format-sm sm:format-base lg:format-lg format-blue dark:format-invert md:pr-4">

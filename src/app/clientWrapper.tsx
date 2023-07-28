@@ -1,13 +1,18 @@
 "use client";
 import React, { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { pushPosts } from "@/redux/entities/posts";
+import { PostType } from "@/common/interface/post";
 
 export default function ClientWrapper({
   children,
   posts,
 }: {
   children: React.ReactNode;
-  posts: any; //todo: fix type
+  posts: PostType[]; //todo: fix type
 }) {
+  const dispatch = useAppDispatch();
+
   useEffect(() => {
     const themeToggleBtn = document.getElementById(
       "theme-toggle"
@@ -18,6 +23,7 @@ export default function ClientWrapper({
 
     themeToggleBtn.addEventListener("click", modeSwitcher);
     window.addEventListener("scroll", handleScroll);
+    dispatch(pushPosts(posts));
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -113,11 +119,5 @@ export default function ClientWrapper({
     localStorage.setItem("color-theme", currentMode);
   };
 
-  const renderChildren = (posts: any): React.ReactElement => {
-    return React.Children.map(children, (child: any) => {
-      return React.cloneElement(child, { posts });
-    });
-  };
-
-  return <>{renderChildren(posts)}</>;
+  return <>{children}</>;
 }

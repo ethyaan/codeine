@@ -1,14 +1,8 @@
 import fs from "fs";
 import matter from "gray-matter";
+import { PostType } from "@/common/interface/post";
 
-interface PostMetadata {
-  title: string;
-  date: string;
-  subtitle: string;
-  slug: string;
-}
-
-const getPosts = (count: number = 10): PostMetadata[] => {
+const getPosts = (count: number = 10): PostType[] => {
   const folder = "posts/";
   const files = fs.readdirSync(folder);
   const markdownPosts = files
@@ -24,6 +18,9 @@ const getPosts = (count: number = 10): PostMetadata[] => {
       date: matterResult.data.date,
       subtitle: matterResult.data.subtitle,
       slug: fileName.replace(".md", ""),
+      context: (length: number) => {
+        return ``;
+      },
     };
   });
 
