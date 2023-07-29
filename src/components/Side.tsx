@@ -2,9 +2,12 @@
 import { useAppSelector } from "@/redux/hooks";
 import { PostType } from "@/common/types/post";
 import Image from "next/image";
+import { shallowEqual } from "react-redux";
 
 export default function Side() {
-  const posts: PostType[] = useAppSelector((state) => state.posts.slice(0, 3));
+  const posts: PostType[] = useAppSelector((state) => state.posts.slice(0, 3), {
+    equalityFn: shallowEqual,
+  });
   return (
     <aside aria-labelledby="sidebar-label">
       <div className="xl:w-[21rem] max-w-xs sticky top-6">
