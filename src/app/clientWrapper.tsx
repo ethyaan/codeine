@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { useAppDispatch } from "@/redux/hooks";
 import { pushPosts } from "@/redux/entities/posts";
 import { PostType } from "@/common/types/post";
 
@@ -9,7 +9,7 @@ export default function ClientWrapper({
   posts,
 }: {
   children: React.ReactNode;
-  posts: PostType[]; //todo: fix type
+  posts: PostType[];
 }) {
   const dispatch = useAppDispatch();
 
