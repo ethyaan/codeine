@@ -16,8 +16,8 @@ export default function Navbar() {
       <div className="w-full max-w-7xl mx-auto flex flex-wrap items-center justify-between mt-0 pb-1.5 pt-0.5">
         <div className="pl-4">
           <a
-            className="text-gray-800 dark:text-gray-300 no-underline hover:no-underline font-extrabold text-xl"
-            href="#"
+            className="text-gray-800 dark:text-gray-100 no-underline hover:no-underline font-extrabold text-xl"
+            href="/"
           >
             Codeine
           </a>
