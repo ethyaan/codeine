@@ -17,6 +17,7 @@ export default function Header() {
             Published by{" "}
             <a
               href={post.authorURL}
+              target="_blank"
               className="font-semibold text-white underline"
             >
               {post.author}
