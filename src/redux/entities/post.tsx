@@ -7,9 +7,9 @@ export const post = createSlice({
   name: "post",
   initialState: initialState,
   reducers: {
-    reset: (state) => initialState,
+    reset: () => initialState,
     pushPost: (state, action: PayloadAction<PostType>) => {
-      state = action.payload as PostType;
+      Object.assign(state, action.payload);
     },
   },
 });
