@@ -6,11 +6,13 @@ const folder = "posts/";
 
 const extractAndFormatPost = (fileContents: any, slug: string) => {
   const {
-    data: { title, date, context },
+    data: { title, date, context, author, authorURL },
     content,
   } = matter(fileContents);
 
   return {
+    author,
+    authorURL,
     title,
     date,
     context,

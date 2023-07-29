@@ -1,4 +1,6 @@
 export interface PostType {
+  author: string;
+  authorURL: string;
   title: string;
   date: string;
   slug: string;
