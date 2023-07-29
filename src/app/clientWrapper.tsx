@@ -2,7 +2,7 @@
 import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { pushPosts } from "@/redux/entities/posts";
-import { PostType } from "@/common/interface/post";
+import { PostType } from "@/common/types/post";
 
 export default function ClientWrapper({
   children,
