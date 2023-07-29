@@ -10,6 +10,8 @@ const extractAndFormatPost = (fileContents: any, slug: string) => {
     content,
   } = matter(fileContents);
 
+  let excerpt = extractExcerpt(content);
+
   return {
     author,
     authorURL,
@@ -18,7 +20,29 @@ const extractAndFormatPost = (fileContents: any, slug: string) => {
     context,
     slug,
     content,
+    excerpt,
   };
+};
+
+/**
+ * extract excerpt from content
+ * @param content
+ * @returns
+ */
+const extractExcerpt = (content: string): string => {
+  let excerpt = "";
+  let paragraphs = [];
+  if (content.includes("--excerpt--")) {
+    excerpt = content.split("--excerpt--")[0];
+    paragraphs = excerpt.split("\n").filter((e) => e !== "");
+  } else {
+    paragraphs = content
+      .split("\n")
+      .filter((e) => e !== "")
+      .slice(0, 3);
+  }
+  paragraphs[0] = `<div className="lead">${paragraphs[0]}</div>`;
+  return paragraphs.join("<br />").replace("<br />", "");
 };
 
 const getPosts = (count: number = 10): PostType[] => {

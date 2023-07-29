@@ -7,4 +7,5 @@ export interface PostType {
   image?: string;
   context: string;
   content: string;
+  excerpt: string;
 }
