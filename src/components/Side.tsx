@@ -1,6 +1,6 @@
 "use client";
 import { useAppSelector } from "@/redux/hooks";
-import { PostType } from "@/common/interface/post";
+import { PostType } from "@/common/types/post";
 import Image from "next/image";
 
 export default function Side() {
@@ -28,13 +28,13 @@ export default function Side() {
           </h4>
           {posts &&
             posts.length > 0 &&
-            posts.map(({ title, context, date }, index) => {
+            posts.map(({ title, context, slug, image }, index) => {
               return (
                 <div
                   className="mb-6 flex items-center"
                   key={`side-post-${index}`}
                 >
-                  <a href="#" className="shrink-0">
+                  <a href={`post/${slug}`} className="shrink-0">
                     <Image
                       src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/articles/image-1.png"
                       className="mr-4 max-w-full w-[6rem] h-[6rem] rounded-lg"
@@ -48,10 +48,10 @@ export default function Side() {
                       {title}
                     </h5>
                     <p className="mb-2 font-light	text-sm	 text-gray-500 dark:text-gray-400">
-                      {context(100)}
+                      {context}
                     </p>
                     <a
-                      href="#"
+                      href={`post/${slug}`}
                       className="inline-flex items-center font-medium	 underline underline-offset-4 text-primary-600 dark:text-primary-500 hover:no-underline"
                     >
                       Continue to read
