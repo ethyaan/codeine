@@ -1,9 +1,25 @@
 import fs from "fs";
 import matter from "gray-matter";
-import { PostType } from "@/common/interface/post";
+import { PostType } from "@/common/types/post";
+
+const folder = "posts/";
+
+const extractAndFormatPost = (fileContents: any, slug: string) => {
+  const {
+    data: { title, date, context },
+    content,
+  } = matter(fileContents);
+
+  return {
+    title,
+    date,
+    context,
+    slug,
+    content,
+  };
+};
 
 const getPosts = (count: number = 10): PostType[] => {
-  const folder = "posts/";
   const files = fs.readdirSync(folder);
   const markdownPosts = files
     .filter((file) => file.endsWith(".md"))
@@ -12,19 +28,16 @@ const getPosts = (count: number = 10): PostType[] => {
   // Get gray-matter data from each file.
   const posts = markdownPosts.map((fileName) => {
     const fileContents = fs.readFileSync(`posts/${fileName}`, "utf8");
-    const matterResult = matter(fileContents);
-    return {
-      title: matterResult.data.title,
-      date: matterResult.data.date,
-      subtitle: matterResult.data.subtitle,
-      slug: fileName.replace(".md", ""),
-      context: (length: number) => {
-        return ``;
-      },
-    };
+    return extractAndFormatPost(fileContents, fileName.replace(".md", ""));
   });
 
   return posts;
 };
 
 export default getPosts;
+
+export const getPost = (slug: string) => {
+  const file = `${folder}${slug}.md`;
+  const content = fs.readFileSync(file, "utf8");
+  return extractAndFormatPost(content, slug);
+};
