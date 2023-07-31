@@ -3,7 +3,7 @@ import path from "path";
 import matter from "gray-matter";
 import { PostType } from "@/common/types/post";
 
-const folder = "posts/";
+const folder = "public/posts/";
 
 const hostURL = process.env["NEXT_PUBLIC_HOSTURL"];
 const imagesHostURL = process.env["NEXT_PUBLIC_IMAGE_HOSTURL"];
@@ -67,7 +67,7 @@ const getPosts = (count: number = 10): PostType[] => {
 
   // Get gray-matter data from each file.
   const posts = markdownPosts.map(({ name }) => {
-    const fileContents = fs.readFileSync(`posts/${name}`, "utf8");
+    const fileContents = fs.readFileSync(`${folder}${name}`, "utf8");
     return extractAndFormatPost(fileContents, name.replace(".md", ""));
   });
 
