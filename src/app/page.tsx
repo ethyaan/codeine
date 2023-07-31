@@ -1,25 +1,11 @@
 "use client";
 import Markdown from "markdown-to-jsx";
-import ButtonIcon from "@/components/ButtonIcon";
 import { useAppSelector } from "@/redux/hooks";
 import { PostType } from "@/common/types/post";
+import { Sharing } from "@/components/sharing";
 
 export default function Home() {
   const posts: PostType[] = useAppSelector((state) => state.posts);
-
-  const sharingAction = (action: string, urlToShare?: string): void => {
-    const url = urlToShare || window.location.href;
-    const URLS: any = {
-      facebook: "https://www.facebook.com/sharer/sharer.php?u=",
-      twitter: "https://twitter.com/intent/tweet?url=",
-      reddit: "https://www.reddit.com/submit?url=",
-    };
-    window.open(`${URLS[action]}${url}`, "_blank");
-  };
-
-  const copyToClipboard = (text: string) => {
-    navigator.clipboard.writeText(text);
-  };
 
   return (
     <>
@@ -58,34 +44,7 @@ export default function Home() {
                     </div>
                     <aside aria-label="Share social media">
                       <div className="not-format">
-                        <ButtonIcon
-                          icon="facebook"
-                          tooltip="Share on Facebook"
-                          onClick={() => {
-                            sharingAction("facebook", postURL);
-                          }}
-                        />
-                        <ButtonIcon
-                          icon="twitter"
-                          tooltip="Share on Twitter"
-                          onClick={() => {
-                            sharingAction("twitter", postURL);
-                          }}
-                        />
-                        <ButtonIcon
-                          icon="reddit"
-                          tooltip="Post on Reddit"
-                          onClick={() => {
-                            sharingAction("reddit", postURL);
-                          }}
-                        />
-                        <ButtonIcon
-                          icon="link"
-                          tooltip="Copy URL"
-                          onClick={() => {
-                            copyToClipboard(postURL);
-                          }}
-                        />
+                        <Sharing postURL={postURL} />
                       </div>
                     </aside>
                   </div>
