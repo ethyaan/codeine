@@ -75,7 +75,6 @@ export default function ClientWrapper({
    */
   const setSwitcherIcon = (): void => {
     const { dark, light } = switcherIcons();
-
     if (
       localStorage.getItem("color-theme") === "dark" ||
       (!("color-theme" in localStorage) &&
@@ -100,6 +99,17 @@ export default function ClientWrapper({
     } else {
       document.documentElement.classList.add("dark");
     }
+    progressBarColor();
+  };
+
+  /**
+   * set progressbar color based on theme
+   */
+  const progressBarColor = () => {
+    const progress = document.querySelector("#progress") as HTMLElement;
+    const isDark = document.documentElement.classList.contains("dark");
+    const pbColor = isDark ? "#FFFFFF" : "rgb(22 163 74)";
+    progress.style.setProperty("--scrollColor", pbColor);
   };
 
   /**
@@ -117,6 +127,7 @@ export default function ClientWrapper({
     document.documentElement.classList.remove(...["dark", "light"]);
     document.documentElement.classList.add(currentMode);
     localStorage.setItem("color-theme", currentMode);
+    progressBarColor();
   };
 
   return <>{children}</>;
