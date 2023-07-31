@@ -10,7 +10,7 @@ export default function Side() {
   });
   return (
     <aside aria-labelledby="sidebar-label">
-      <div className="xl:w-[21rem] max-w-xs sticky top-6">
+      <div className="xl:w-[21rem] max-w-xs sticky top-16">
         <h3 id="sidebar-label" className="sr-only">
           Sidebar
         </h3>
@@ -18,7 +18,7 @@ export default function Side() {
           <h4 className="mb-2 text-sm font-bold text-gray-900 dark:text-white uppercase">
             Why?
           </h4>
-          <p className="mb-4 text-sm font-light	 text-gray-500 dark:text-gray-400">
+          <p className="mb-4 text-sm font-light	 text-green-800 dark:text-green-600">
             Knowledge sharing is the currency of growth, and teamwork is the
             engine that drives it. When we come together, sharing our expertise
             and supporting one another, we pave the way for innovation and
@@ -55,7 +55,7 @@ export default function Side() {
                     </p>
                     <a
                       href={`post/${slug}`}
-                      className="inline-flex items-center font-medium	 underline underline-offset-4 text-primary-600 dark:text-primary-500 hover:no-underline"
+                      className="inline-flex items-center font-medium underline"
                     >
                       Continue to read
                     </a>
