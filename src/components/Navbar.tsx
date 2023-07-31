@@ -9,7 +9,7 @@ export default function Navbar() {
         className="h-1 z-40 top-0"
         style={{
           background:
-            "linear-gradient(to right, #4dc0b5 var(--scroll), transparent 0)",
+            "linear-gradient(to right, var(--scrollColor) var(--scroll), transparent 0)",
         }}
       ></div>
 
@@ -27,7 +27,7 @@ export default function Navbar() {
           <button
             id="theme-toggle"
             type="button"
-            className="text-gray-600 dark:text-gray-300 hover:text-green-500 hover:dark:text-green-100 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg text-sm p-2 w-9 h-9"
+            className="text-gray-600 dark:text-gray-100 hover:text-green-500 hover:dark:text-green-100 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg text-sm p-2 w-9 h-9"
           >
             <svg
               id="theme-toggle-dark-icon"
