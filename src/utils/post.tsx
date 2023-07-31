@@ -67,7 +67,10 @@ const getPosts = (count: number = 10): PostType[] => {
 
   // Get gray-matter data from each file.
   const posts = markdownPosts.map(({ name }) => {
-    const fileContents = fs.readFileSync(`${folder}${name}`, "utf8");
+    const fileContents = fs.readFileSync(
+      `${process.cwd()}/${folder}${name}`,
+      "utf8"
+    );
     return extractAndFormatPost(fileContents, name.replace(".md", ""));
   });
 
@@ -77,7 +80,8 @@ const getPosts = (count: number = 10): PostType[] => {
 export default getPosts;
 
 export const getPost = (slug: string) => {
-  const file = `${folder}${slug}.md`;
+  console.log("zxcxzzcxcz =>", process.cwd());
+  const file = `${process.cwd()}/${folder}${slug}.md`;
   const content = fs.readFileSync(file, "utf8");
   return extractAndFormatPost(content, slug);
 };
