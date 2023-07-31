@@ -24,7 +24,7 @@ const extractAndFormatPost = (fileContents: any, slug: string) => {
     context,
     slug,
     url: `${hostURL}/post/${slug}`,
-    content,
+    content: content.replace("--excerpt--", ""),
     excerpt,
     image: `${imagesHostURL}${image}`,
   };
