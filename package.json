@@ -16,8 +16,6 @@
     "autoprefixer": "10.4.14",
     "eslint": "8.44.0",
     "eslint-config-next": "13.4.9",
-    "flowbite": "^1.7.0",
-    "flowbite-react": "^0.4.11",
     "fs": "^0.0.1-security",
     "gray-matter": "^4.0.3",
     "markdown-to-jsx": "^7.2.1",
