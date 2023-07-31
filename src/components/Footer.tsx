@@ -1,4 +1,5 @@
 export default function Footer() {
+  const hostURL = process.env["NEXT_PUBLIC_HOSTURL"];
   return (
     <footer className="bg-white dark:bg-gray-900 pt-8">
       <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
@@ -6,7 +7,7 @@ export default function Footer() {
         <div className="sm:flex sm:items-center sm:justify-between">
           <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
             {`${new Date().getFullYear()} `}
-            <a href="https://codeine.blog" className="hover:underline">
+            <a href={hostURL} className="hover:underline">
               Codeine
             </a>
             . All Rights Reversed.

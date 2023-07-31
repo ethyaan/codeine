@@ -13,8 +13,7 @@ export default function Home() {
         {posts &&
           posts.length > 0 &&
           posts.map(
-            ({ title, author, authorURL, date, excerpt, slug }, index) => {
-              const postURL = `https://codeine.blog/post/${slug}`;
+            ({ title, author, authorURL, date, excerpt, url }, index) => {
               return (
                 <div
                   className="w-full pb-8 mb-16 border-b border-dashed border-emerald-700"
@@ -44,7 +43,7 @@ export default function Home() {
                     </div>
                     <aside aria-label="Share social media">
                       <div className="not-format">
-                        <Sharing postURL={postURL} />
+                        <Sharing postURL={url} />
                       </div>
                     </aside>
                   </div>
@@ -52,7 +51,7 @@ export default function Home() {
                     <Markdown>{excerpt}</Markdown>
                   </div>
                   <div>
-                    <a className="" href={postURL}>
+                    <a className="" href={url}>
                       Read More...
                     </a>
                   </div>

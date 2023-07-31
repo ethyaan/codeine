@@ -4,6 +4,7 @@ export interface PostType {
   title: string;
   date: string;
   slug: string;
+  url: string;
   image?: string;
   context: string;
   content: string;

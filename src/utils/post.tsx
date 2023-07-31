@@ -5,9 +5,12 @@ import { PostType } from "@/common/types/post";
 
 const folder = "posts/";
 
+const hostURL = process.env["NEXT_PUBLIC_HOSTURL"];
+const imagesHostURL = process.env["NEXT_PUBLIC_IMAGE_HOSTURL"];
+
 const extractAndFormatPost = (fileContents: any, slug: string) => {
   const {
-    data: { title, date, context, author, authorURL },
+    data: { title, date, context, author, authorURL, image },
     content,
   } = matter(fileContents);
 
@@ -20,8 +23,10 @@ const extractAndFormatPost = (fileContents: any, slug: string) => {
     date,
     context,
     slug,
+    url: `${hostURL}/post/${slug}`,
     content,
     excerpt,
+    image: `${imagesHostURL}${image}`,
   };
 };
 

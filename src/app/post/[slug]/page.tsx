@@ -7,7 +7,6 @@ import { Sharing } from "@/components/sharing";
 export default function Post(props: any) {
   const slug = props.params.slug;
   const post: PostType = getPost(slug);
-  const postURL = `https://codeine.blog/post/${slug}`;
 
   return (
     <ClientPost post={post}>
@@ -17,7 +16,7 @@ export default function Post(props: any) {
             <div className="flex space-x-3 mb-2 xl:mb-0"></div>
             <aside aria-label="Share social media">
               <div className="not-format">
-                <Sharing postURL={postURL} />
+                <Sharing postURL={post.url} />
               </div>
             </aside>
           </div>

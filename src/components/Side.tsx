@@ -31,17 +31,17 @@ export default function Side() {
           </h4>
           {posts &&
             posts.length > 0 &&
-            posts.map(({ title, context, slug, image }, index) => {
+            posts.map(({ title, context, slug, image, url }, index) => {
               return (
                 <div
                   className="mb-6 flex items-center"
                   key={`side-post-${index}`}
                 >
-                  <a href={`post/${slug}`} className="shrink-0">
+                  <a href={url} className="shrink-0">
                     <Image
-                      src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/articles/image-1.png"
+                      src={image as string}
                       className="mr-4 max-w-full w-[6rem] h-[6rem] rounded-lg"
-                      alt="Image 1"
+                      alt={title}
                       width={0}
                       height={0}
                     />
@@ -54,7 +54,7 @@ export default function Side() {
                       {context}
                     </p>
                     <a
-                      href={`post/${slug}`}
+                      href={url}
                       className="inline-flex items-center font-medium underline"
                     >
                       Continue to read
