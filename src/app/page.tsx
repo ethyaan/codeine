@@ -7,6 +7,20 @@ import { PostType } from "@/common/types/post";
 export default function Home() {
   const posts: PostType[] = useAppSelector((state) => state.posts);
 
+  const sharingAction = (action: string, urlToShare?: string): void => {
+    const url = urlToShare || window.location.href;
+    const URLS: any = {
+      facebook: "https://www.facebook.com/sharer/sharer.php?u=",
+      twitter: "https://twitter.com/intent/tweet?url=",
+      reddit: "https://www.reddit.com/submit?url=",
+    };
+    window.open(`${URLS[action]}${url}`, "_blank");
+  };
+
+  const copyToClipboard = (text: string) => {
+    navigator.clipboard.writeText(text);
+  };
+
   return (
     <>
       <article className="xl:w-[52rem] lg:w-[52rem] md-w-auto w-full max-w-none format format-sm sm:format-base lg:format-lg format-blue dark:format-invert md:pr-4">
@@ -14,6 +28,7 @@ export default function Home() {
           posts.length > 0 &&
           posts.map(
             ({ title, author, authorURL, date, excerpt, slug }, index) => {
+              const postURL = `https://codeine.blog/post/${slug}`;
               return (
                 <div
                   className="w-full pb-8 mb-16 border-b border-dashed border-emerald-700"
@@ -46,10 +61,31 @@ export default function Home() {
                         <ButtonIcon
                           icon="facebook"
                           tooltip="Share on Facebook"
+                          onClick={() => {
+                            sharingAction("facebook", postURL);
+                          }}
                         />
-                        <ButtonIcon icon="twitter" tooltip="Share on Twitter" />
-                        <ButtonIcon icon="reddit" tooltip="Post on Reddit" />
-                        <ButtonIcon icon="link" tooltip="Copy URL" />
+                        <ButtonIcon
+                          icon="twitter"
+                          tooltip="Share on Twitter"
+                          onClick={() => {
+                            sharingAction("twitter", postURL);
+                          }}
+                        />
+                        <ButtonIcon
+                          icon="reddit"
+                          tooltip="Post on Reddit"
+                          onClick={() => {
+                            sharingAction("reddit", postURL);
+                          }}
+                        />
+                        <ButtonIcon
+                          icon="link"
+                          tooltip="Copy URL"
+                          onClick={() => {
+                            copyToClipboard(postURL);
+                          }}
+                        />
                       </div>
                     </aside>
                   </div>
@@ -57,7 +93,7 @@ export default function Home() {
                     <Markdown>{excerpt}</Markdown>
                   </div>
                   <div>
-                    <a className="" href={`/post/${slug}`}>
+                    <a className="" href={postURL}>
                       Read More...
                     </a>
                   </div>

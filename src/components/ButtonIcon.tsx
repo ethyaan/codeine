@@ -3,7 +3,7 @@ import { Link } from "./icons/link";
 import { Reddit } from "./icons/reddit";
 import { Twitter } from "./icons/twitter";
 
-export default function ButtonIcon({ icon, tooltip }: any) {
+export default function ButtonIcon({ icon, tooltip, onClick }: any) {
   const iconComponentMap: any = {
     facebook: Facebook,
     link: Link,
@@ -17,6 +17,7 @@ export default function ButtonIcon({ icon, tooltip }: any) {
         data-tooltip-target={`tooltip-${icon}`}
         className="inline-flex items-center p-2 mx-0.5 text-sm font-medium text-center text-gray-500 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-2 dark:text-white focus:ring-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
         type="button"
+        onClick={onClick}
       >
         <IconComponent />
       </button>
