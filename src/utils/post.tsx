@@ -1,4 +1,5 @@
 import fs from "fs";
+import path from "path";
 import matter from "gray-matter";
 import { PostType } from "@/common/types/post";
 
@@ -49,12 +50,21 @@ const getPosts = (count: number = 10): PostType[] => {
   const files = fs.readdirSync(folder);
   const markdownPosts = files
     .filter((file) => file.endsWith(".md"))
+    .map((file) => {
+      const filePath = path.join(folder, file);
+      return {
+        name: file,
+        creationDate: getCreationDate(filePath),
+      };
+    })
+    .sort((a: any, b: any) => b.creationDate - a.creationDate)
     .slice(0, count);
 
   // Get gray-matter data from each file.
-  const posts = markdownPosts.map((fileName) => {
-    const fileContents = fs.readFileSync(`posts/${fileName}`, "utf8");
-    return extractAndFormatPost(fileContents, fileName.replace(".md", ""));
+  const posts = markdownPosts.map(({ name }) => {
+    console.log("_DEBUG_ =>", name);
+    const fileContents = fs.readFileSync(`posts/${name}`, "utf8");
+    return extractAndFormatPost(fileContents, name.replace(".md", ""));
   });
 
   return posts;
@@ -67,3 +77,8 @@ export const getPost = (slug: string) => {
   const content = fs.readFileSync(file, "utf8");
   return extractAndFormatPost(content, slug);
 };
+
+function getCreationDate(filePath: string) {
+  const stat = fs.statSync(filePath);
+  return stat.birthtime;
+}
