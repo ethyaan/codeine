@@ -36,7 +36,7 @@ export default function RootLayout({
             <main className="pb-16 lg:pb-24 bg-white dark:bg-gray-900">
               <Navbar />
               <Header />
-              <div className="flex relative z-20 justify-between p-6 -m-36 mx-4 max-w-7xl bg-white dark:bg-gray-800 rounded xl:-m-32 xl:p-9 xl:mx-auto">
+              <div className="flex relative z-20 justify-between p-6 -m-36 mx-4 max-w-7xl bg-white dark:bg-gray-800 rounded xl:-m-32 xl:p-9 xl:mx-auto lg:flex-row flex-col">
                 <ClientWrapper posts={posts}>{children}</ClientWrapper>
                 <Side />
               </div>

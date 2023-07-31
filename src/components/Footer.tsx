@@ -4,14 +4,14 @@ export default function Footer() {
     <footer className="bg-white dark:bg-gray-900 pt-8">
       <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
         <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
-        <div className="sm:flex sm:items-center sm:justify-between">
-          <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
+        <div className="flex flex-col sm:flex-row items-center justify-between">
+          <div className="text-sm text-gray-500 text-center dark:text-gray-400">
             {`${new Date().getFullYear()} `}
             <a href={hostURL} className="hover:underline">
               Codeine
             </a>
             . All Rights Reversed.
-          </span>
+          </div>
           <div className="flex mt-4 space-x-5 sm:justify-center sm:mt-0">
             <a
               href="https://github.com/ethyaan/codeine"

@@ -19,11 +19,13 @@ export default function Home() {
                   className="w-full pb-8 mb-16 border-b border-dashed border-emerald-700"
                   key={`post-${index}`}
                 >
-                  <h1 className="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl dark:text-white">
-                    {title}
-                  </h1>
-                  <div className="flex flex-col xl:flex-row justify-between xl:items-center mb-2 pb-2 border-b border-solid border-emerald-500">
-                    <div className="flex items-center space-x-3 text-gray-500 dark:text-gray-400 text-base mb-2 xl:mb-0">
+                  <a href={url} className="text-green-500 hover:underline">
+                    <h1 className="mb-4 text-3xl font-extrabold leading-tight lg:mb-6 lg:text-4xl text-green-500">
+                      {title}
+                    </h1>
+                  </a>
+                  <div className="flex sm:flex-row flex-col justify-between xl:items-center mb-2 pb-2 border-b border-solid border-emerald-500">
+                    <div className="flex justify-center items-center space-x-3 text-gray-500 dark:text-gray-400 text-base mb-2 xl:mb-0">
                       <span>
                         By{" "}
                         <a
@@ -41,19 +43,20 @@ export default function Home() {
                         </time>
                       </span>
                     </div>
-                    <aside aria-label="Share social media">
+                    <div
+                      className="flex justify-center"
+                      aria-label="Share social media"
+                    >
                       <div className="not-format">
                         <Sharing postURL={url} />
                       </div>
-                    </aside>
+                    </div>
                   </div>
                   <div>
                     <Markdown>{excerpt}</Markdown>
                   </div>
                   <div>
-                    <a className="" href={url}>
-                      Read More...
-                    </a>
+                    <a href={url}>Read More...</a>
                   </div>
                 </div>
               );

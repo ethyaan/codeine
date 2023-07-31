@@ -10,7 +10,7 @@ export default function Side() {
   });
   return (
     <aside aria-labelledby="sidebar-label">
-      <div className="xl:w-[21rem] max-w-xs sticky top-16">
+      <div className="lg:w-[21rem] lg:max-w-xs max-w-none w-full sticky top-16">
         <h3 id="sidebar-label" className="sr-only">
           Sidebar
         </h3>
@@ -31,7 +31,7 @@ export default function Side() {
           </h4>
           {posts &&
             posts.length > 0 &&
-            posts.map(({ title, context, slug, image, url }, index) => {
+            posts.map(({ title, context, image, url }, index) => {
               return (
                 <div
                   className="mb-6 flex items-center"
@@ -42,8 +42,9 @@ export default function Side() {
                       src={image as string}
                       className="mr-4 max-w-full w-[6rem] h-[6rem] rounded-lg"
                       alt={title}
-                      width={0}
-                      height={0}
+                      width={96}
+                      height={96}
+                      quality={100}
                     />
                   </a>
                   <div>
