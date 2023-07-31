@@ -67,7 +67,6 @@ const getPosts = (count: number = 10): PostType[] => {
 
   // Get gray-matter data from each file.
   const posts = markdownPosts.map(({ name }) => {
-    console.log("_DEBUG_ =>", name);
     const fileContents = fs.readFileSync(`posts/${name}`, "utf8");
     return extractAndFormatPost(fileContents, name.replace(".md", ""));
   });
