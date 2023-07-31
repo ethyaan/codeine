@@ -1,4 +1,14 @@
+@layer base {
+    a:any-link {
+        @apply text-green-600;
+        @apply decoration-dashed;
+        @apply decoration-1;
+    }
+    a:hover {
+        @apply decoration-solid;
+    }
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
