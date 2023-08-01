@@ -80,7 +80,6 @@ const getPosts = (count: number = 10): PostType[] => {
 export default getPosts;
 
 export const getPost = (slug: string) => {
-  console.log("zxcxzzcxcz =>", process.cwd());
   const file = `${process.cwd()}/${folder}${slug}.md`;
   const content = fs.readFileSync(file, "utf8");
   return extractAndFormatPost(content, slug);
