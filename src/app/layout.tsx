@@ -1,4 +1,5 @@
 import "./globals.css";
+import { Metadata, ResolvingMetadata } from "next";
 import Script from "next/script";
 import Head from "next/head";
 import { Providers } from "@/redux/provider";
@@ -12,6 +13,14 @@ import getPosts from "@/utils/post";
 
 const posts = getPosts(10);
 const inter = Inter({ subsets: ["latin"] });
+
+export const metadata: Metadata = {
+  title: {
+    template: "Codeine Blog | %s",
+    default: "Codeine Blog",
+  },
+  description: "Software engineering & thoughts & idea & discussions",
+};
 
 export default function RootLayout({
   children,
