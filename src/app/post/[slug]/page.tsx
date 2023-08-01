@@ -1,4 +1,4 @@
-import { Metadata, ResolvingMetadata } from "next";
+import { Metadata } from "next";
 import Markdown from "markdown-to-jsx";
 import { getPost } from "@/utils/post";
 import ClientPost from "./clientPost";
@@ -10,14 +10,10 @@ type Props = {
   params: { slug: string };
 };
 
-export async function generateMetadata(
-  { params }: Props,
-  parent?: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const slug = params.slug;
   const post: PostType = getPost(slug);
   temppp = post;
-
   return {
     title: post.title,
     description: post.context,
