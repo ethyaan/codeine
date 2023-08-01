@@ -8,7 +8,7 @@ const folder = "public/posts/";
 const hostURL = process.env["NEXT_PUBLIC_HOSTURL"];
 const imagesHostURL = process.env["NEXT_PUBLIC_IMAGE_HOSTURL"];
 
-const extractAndFormatPost = (fileContents: any, slug: string) => {
+const extractAndFormatPost = (fileContents: any, slug: string): PostType => {
   const {
     data: { title, date, context, author, authorURL, image },
     content,
@@ -79,11 +79,22 @@ const getPosts = (count: number = 10): PostType[] => {
 
 export default getPosts;
 
-export const getPost = (slug: string) => {
-  const file = `${process.cwd()}/${folder}${slug}.md`;
-  const content = fs.readFileSync(file, "utf8");
-  return extractAndFormatPost(content, slug);
-};
+/**
+ * memozied getPost
+ */
+export const getPost = (() => {
+  const posts: any = {};
+  return (slug: string): PostType => {
+    if (posts[slug]) {
+      return posts[slug];
+    } else {
+      const file = `${process.cwd()}/${folder}${slug}.md`;
+      const content = fs.readFileSync(file, "utf8");
+      posts[slug] = extractAndFormatPost(content, slug);
+      return posts[slug];
+    }
+  };
+})();
 
 function getCreationDate(filePath: string) {
   const stat = fs.statSync(filePath);

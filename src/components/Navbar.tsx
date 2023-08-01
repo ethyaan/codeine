@@ -1,3 +1,6 @@
+import Image from "next/image";
+import logo from "../../public/logo.svg";
+
 export default function Navbar() {
   return (
     <nav
@@ -19,6 +22,13 @@ export default function Navbar() {
             className="text-gray-800 dark:text-gray-100 no-underline hover:no-underline font-extrabold text-xl"
             href="/"
           >
+            <Image
+              src={logo}
+              width={32}
+              height={32}
+              alt="Codeine"
+              className="inline-flex"
+            />
             Codeine
           </a>
         </div>
