@@ -1,19 +1,29 @@
 import { Metadata } from "next";
+import Image from "next/image";
 import Markdown from "markdown-to-jsx";
 import { getPost } from "@/utils/post";
 import ClientPost from "./clientPost";
 import { PostType } from "@/common/types/post";
 import { Sharing } from "@/components/sharing";
 
-let temppp: any = null;
 type Props = {
   params: { slug: string };
 };
 
+export async function ImageComp(props: any) {
+  return (
+    <img
+      src={`${props.src}`}
+      className={`${props.className}`}
+      alt={props.alt}
+      loading="lazy"
+    />
+  );
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const slug = params.slug;
   const post: PostType = getPost(slug);
-  temppp = post;
   return {
     title: post.title,
     description: post.context,
@@ -37,7 +47,17 @@ export default function Post(props: any) {
             </aside>
           </div>
 
-          <Markdown>{post.content}</Markdown>
+          <Markdown
+            options={{
+              overrides: {
+                Image: {
+                  component: ImageComp,
+                },
+              },
+            }}
+          >
+            {post.content}
+          </Markdown>
         </div>
       </article>
     </ClientPost>
