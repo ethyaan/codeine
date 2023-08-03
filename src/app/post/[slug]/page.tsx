@@ -5,30 +5,11 @@ import { getPost } from "@/utils/post";
 import ClientPost from "./clientPost";
 import { PostType } from "@/common/types/post";
 import { Sharing } from "@/components/sharing";
+import { MDImage } from "@/components/MDImage";
 
 type Props = {
   params: { slug: string };
 };
-
-export async function ImageComp(props: any) {
-  return (
-    <img
-      src={`${props.src}`}
-      className={`${props.className}`}
-      alt={props.alt}
-      loading="lazy"
-    />
-  );
-}
-
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const slug = params.slug;
-  const post: PostType = getPost(slug);
-  return {
-    title: post.title,
-    description: post.context,
-  };
-}
 
 export default function Post(props: any) {
   const slug = props.params.slug;
@@ -51,7 +32,7 @@ export default function Post(props: any) {
             options={{
               overrides: {
                 Image: {
-                  component: ImageComp,
+                  component: MDImage,
                 },
               },
             }}
