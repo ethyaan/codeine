@@ -102,3 +102,6 @@ Likewise, the same applies to software engineers who enter the industry solely d
 
 <Image src="/images/3-sw.jpg" alt="Start zone" className="mx-auto" />
 
+<hr />
+
+Book suggestion : [The Why Café](https://www.blinkist.com/en/books/the-why-cafe-en) by Book by [John Strelecky](https://www.johnstrelecky.com/)
